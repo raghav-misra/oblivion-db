@@ -1,1 +1,1 @@
-console.log("test");
+export { initialize } from "./functions/initialize.js";

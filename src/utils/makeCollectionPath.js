@@ -1,0 +1,1 @@
+export const makeCollectionPath = (dir, collection) => `${dir}/${collection}.db.json`;
