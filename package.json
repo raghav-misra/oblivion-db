@@ -1,0 +1,27 @@
+{
+  "name": "oblivion-db",
+  "version": "0.0.0",
+  "description": "A simple, file-based no-SQL database.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raghav-misra/oblivion-db.git"
+  },
+  "keywords": [
+    "no-sql",
+    "file-based",
+    "database"
+  ],
+  "author": "Raghav Misra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raghav-misra/oblivion-db/issues"
+  },
+  "homepage": "https://github.com/raghav-misra/oblivion-db#readme",
+  "devDependencies": {
+    "rollup": "^2.28.2"
+  }
+}
