@@ -82,7 +82,7 @@ export class MemoryStore {
     // override a document's data:
     async replace(collection, _id, newData) {
         try {
-            const indexToReplace = this.data[collection].findIndex(doc => doc.id === _id);
+            const indexToReplace = this.data[collection].findIndex(doc => doc._id === _id);
 
             if (indexToReplace === -1) {
                 return { success: false, error: `Document doesn't exist in collection "${collection}"!` };
@@ -99,14 +99,14 @@ export class MemoryStore {
         }
 
         catch (error) {
-
+            return { success: false, error };
         }
     }
 
     // remove document form db
     async remove(collection, _id) {
         try {
-            const indexToRemove = this.data[collection].findIndex(doc => doc.id === _id);
+            const indexToRemove = this.data[collection].findIndex(doc => doc._id === _id);
 
             if (indexToRemove === -1) {
                 return { success: false, error: `Document doesn't exist in collection "${collection}"!` }

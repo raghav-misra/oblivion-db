@@ -1,8 +1,8 @@
 /* Wrapper class around a data document. */
 export class Document {
     // Setup function 
-    constructor(documentData, _internals) {
-        documentData._id = undefined;
+    constructor(documentData, internals) {
+        delete documentData._id;
 
         this.data = documentData; 
         
