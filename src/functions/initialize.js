@@ -1,34 +1,45 @@
-import fs from "fs/promises";
-import { idTracker } from "../functions/idTracker";
+import { promises as fs } from "fs";
 import { checkDir } from "../utils/checkDir";
 import { makeCollectionPath } from "../utils/makeCollectionPath";
+import { MemoryStore } from "../classes/MemoryStore";
 
 export async function initialize(dir, collections) {
-    // Holds in memory copy of data:
-    const data = Object.create(null);
-
     // Confirm folder is available:
     await checkDir(dir);
 
-    // Tracks unique IDs for each document:
-    const ids = idTracker(`${dir}/_ids`);
+    // Holds in memory copy of data:
+    const store = new MemoryStore();
+    await store.init(dir);
 
     // Create/restore file for each collection:
-    for (const i of collections) {
-        const collection = collections[i];
+    for (const collection of collections) {
         const collectionPath = makeCollectionPath(dir, collection);
 
         /* Exists */
         try {
             await fs.access(collectionPath);
-            const currentData = await fs.readFile(typePath);
-            data[type] = JSON.parse(currentData.toString());
+            const existingData = await fs.readFile(collectionPath);
+            store.addCollection(collection, existingData);
         }
 
         /* Create new */
         catch (error) {
             await fs.writeFile(collectionPath, "[]");
-            data[type] = [];
+            store.addCollection(collection)
+        }
+    }
+
+    return {
+        async create(collection, data) {
+            return await store.create(collection, data);
+        },
+
+        find(collection, query) {
+            return store.find(collection, query);
+        },
+
+        findById(collection, _id) {
+            return store.find(collection, { _id });
         }
     }
 }

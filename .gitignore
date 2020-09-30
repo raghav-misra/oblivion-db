@@ -1,4 +1,4 @@
 archive/
 node_modules/
 dist/
-test/
+test/db

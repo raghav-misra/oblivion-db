@@ -1,8 +1,9 @@
-import fs from "fs/promises";
+import { promises as fs } from "fs";
+
+const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export async function idTracker(path) {
     const ids = [];
-    const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     try {
         await fs.access(path);
@@ -24,7 +25,7 @@ export async function idTracker(path) {
 
             else {
                 ids.push(result);
-                await fs.appendFile(path, `\n${result}`);
+                await fs.appendFile(path, `${result}\n`);
                 return result;
             }
         }

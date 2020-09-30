@@ -4,7 +4,8 @@
   "description": "A simple, file-based no-SQL database.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,1 +1,1 @@
-export { initialize } from "./functions/initialize.js";
+export { initialize } from "./functions/initialize";
